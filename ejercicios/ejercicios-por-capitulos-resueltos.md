@@ -326,8 +326,37 @@ package main
 
 import "fmt"
 
+type Libro struct{
+    Titulo string
+    Autor string
+    Paginas int
+}
+
+func (l Libro) getAutor() string{
+    return l.Autor
+}
+
+func (l Libro) getTitulo() string{
+    return l.Titulo
+}
+
+func (l Libro) setPaginas(nPag int){
+    l.Paginas = nPag
+}
+
 func main() {
-    
+    libro := Libro{
+        Titulo:  "El Quijote",
+        Autor:   "Miguel de Cervantes",
+        Paginas: 863,
+    }
+
+    fmt.Println("Título:", libro.GetTitulo())
+    fmt.Println("Autor:", libro.GetAutor())
+    fmt.Println("Páginas:", libro.Paginas)
+
+    libro.setPaginas(900)
+    fmt.Println("Páginas:", libro.Paginas)
 }
 ```
 
