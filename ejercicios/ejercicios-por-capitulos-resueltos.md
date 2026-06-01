@@ -269,7 +269,17 @@ package main
 import "fmt"
 
 func main() {
-    
+    materias := []string{"MITEX", "APAUBIO", "CCPD", "IASA"}
+    materia := "SIRE"
+
+    fmt.Println("Materias:", materias)
+    fmt.Println("Longitud:", len(materias))
+
+    fmt.Println("Realizamos append")
+    materias = append(materias, materia)
+
+    fmt.Println("Materias:", materias)
+    fmt.Println("Longitud:", len(materias))
 }
 ```
 
