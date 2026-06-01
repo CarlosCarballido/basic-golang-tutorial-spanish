@@ -294,7 +294,22 @@ package main
 import "fmt"
 
 func main() {
-    
+    materias := map[string]int{
+        "MITEX" : 6,
+         "APAUBIO" : 9,
+         "CCPD" : 9,
+         "IASA" : 3,
+         "SIRE" : 6
+    }
+
+    // comprobar existencia
+    creditos, existe := materias["SIRE"]
+
+    if existe {
+        fmt.Println("SIRE tiene", creditos, "créditos")
+    } else {
+        fmt.Println("La asignatura no existe")
+    }
 }
 ```
 
