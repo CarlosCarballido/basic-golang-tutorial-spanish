@@ -237,15 +237,46 @@ Enunciado: Define un array de 4 enteros, rellena sus posiciones e imprime su con
 Pistas: el tamano debe ser fijo.
 Practica: arrays.
 
+```go
+package main
+
+import "fmt"
+
+func main() {
+    
+}
+```
+
 ### Ejercicio 11
 Enunciado: Crea un slice de materias, añade una materia nueva con `append` y muestra la longitud final.
 Pistas: reasigna el resultado de `append`.
 Practica: slices dinamicos.
 
+```go
+package main
+
+import "fmt"
+
+func main() {
+    
+}
+```
+
 ### Ejercicio 12
 Enunciado: Usa un `map[string]int` para guardar el numero de creditos de varias asignaturas y consulta una de ellas.
 Pistas: añade una comprobacion de existencia.
 Practica: maps.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    
+}
+```
+
 
 ## Capitulo 5. Structs y composicion
 
@@ -254,15 +285,48 @@ Enunciado: Define un `struct` `Libro` con titulo, autor y paginas, y crea una in
 Pistas: usa un literal de struct.
 Practica: modelado de datos.
 
+```go
+package main
+
+import "fmt"
+
+func main() {
+    
+}
+```
+
+
 ### Ejercicio 14
 Enunciado: Crea un `struct` `Alumno` que embeba otro `struct` `Persona` y accede a un campo promocionado.
 Pistas: usa composicion por embebido.
 Practica: composicion.
 
+```go
+package main
+
+import "fmt"
+
+func main() {
+    
+}
+```
+
+
 ### Ejercicio 15
 Enunciado: Implementa una funcion `ResumenPedido` que reciba un `struct` con varios campos y devuelva un texto legible.
 Pistas: usa `fmt.Sprintf`.
 Practica: structs y funciones auxiliares.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    
+}
+```
+
 
 ## Capitulo 6. Punteros
 
@@ -271,15 +335,48 @@ Enunciado: Escribe una funcion que reciba un puntero a entero y multiplique su v
 Pistas: recuerda desreferenciar con `*`.
 Practica: punteros y mutacion.
 
+```go
+package main
+
+import "fmt"
+
+func main() {
+    
+}
+```
+
+
 ### Ejercicio 17
 Enunciado: Crea una funcion que reciba un `struct` por puntero y actualice uno de sus campos.
 Pistas: compara el valor antes y despues de llamar a la funcion.
 Practica: paso por referencia.
 
+```go
+package main
+
+import "fmt"
+
+func main() {
+    
+}
+```
+
+
 ### Ejercicio 18
 Enunciado: Protege una posible desreferencia de puntero `nil` con una comprobacion previa.
 Pistas: usa `if p != nil`.
 Practica: seguridad al trabajar con punteros.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    
+}
+```
+
 
 ## Capitulo 7. Funciones y metodos
 
@@ -288,15 +385,48 @@ Enunciado: Escribe una funcion que devuelva el resultado de una division y un er
 Pistas: usa retorno multiple.
 Practica: funciones y errores.
 
+```go
+package main
+
+import "fmt"
+
+func main() {
+    
+}
+```
+
+
 ### Ejercicio 20
 Enunciado: Crea un `struct` `Cuenta` y define un metodo con receptor por puntero para ingresar dinero.
 Pistas: el metodo debe modificar el saldo.
 Practica: metodos con receptor por puntero.
 
+```go
+package main
+
+import "fmt"
+
+func main() {
+    
+}
+```
+
+
 ### Ejercicio 21
 Enunciado: Define dos metodos sobre un mismo tipo: uno que solo lea datos y otro que los modifique.
 Pistas: compara receptor por valor y por puntero.
 Practica: diseno de metodos.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    
+}
+```
+
 
 ## Capitulo 8. Paquetes e interfaces
 
@@ -305,15 +435,48 @@ Enunciado: Crea un paquete propio con una funcion exportada y otra privada.
 Pistas: usa mayuscula para exportar.
 Practica: organizacion en paquetes.
 
+```go
+package main
+
+import "fmt"
+
+func main() {
+    
+}
+```
+
+
 ### Ejercicio 23
 Enunciado: Define una interfaz `Notificador` y dos tipos que la implementen de forma implicita.
 Pistas: ambos tipos deben tener el mismo metodo.
 Practica: interfaces.
 
+```go
+package main
+
+import "fmt"
+
+func main() {
+    
+}
+```
+
+
 ### Ejercicio 24
 Enunciado: Crea una funcion que reciba una interfaz y la use sin conocer el tipo concreto.
 Pistas: pasa un valor que cumpla el contrato.
 Practica: polimorfismo por interfaces.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    
+}
+```
+
 
 ## Capitulo 9. Fundamentos de concurrencia
 
