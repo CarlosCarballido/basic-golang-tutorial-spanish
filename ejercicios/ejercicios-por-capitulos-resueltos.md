@@ -244,6 +244,17 @@ import "fmt"
 
 func main() {
     
+    // alternativa array := [4]int{1, 2, 3, 4}
+    var array [4]int
+    array[0] = 1
+    array[1] = 2
+    array[2] = 3
+    array[3] = 4
+
+    // alternativa: for i, valor := range array
+    for i:=0; i<len(array); i++ {
+        fmt.Println("posicion:", i, "del array:", array[i])
+    }
 }
 ```
 
