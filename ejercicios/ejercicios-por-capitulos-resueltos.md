@@ -205,6 +205,31 @@ Enunciado: Crea un programa que cuente cuantas vocales tiene una palabra.
 Pistas: recorre la cadena y compara cada caracter.
 Practica: `string`, `rune` y control de flujo.
 
+```go
+package main
+
+import "fmt"
+
+func main() {
+    var palabra string = "palabra"
+    var caracter rune
+    var contador int = 0
+
+    for i:=0; i < len(palabra); i++{
+        caracter = rune(palabra[i])
+        fmt.Println(string(caracter))
+        if caracter == 'a' ||
+            caracter == 'e' ||
+            caracter == 'i' ||
+            caracter == 'o' ||
+            caracter == 'u' {
+            contador++
+        }
+    }
+    fmt.Println("Número de vocales:", contador)
+}
+```
+
 ## Capitulo 4. Arrays, slices y maps
 
 ### Ejercicio 10
