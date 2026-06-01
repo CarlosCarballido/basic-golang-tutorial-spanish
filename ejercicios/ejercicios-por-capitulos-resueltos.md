@@ -340,7 +340,7 @@ func (l Libro) getTitulo() string{
     return l.Titulo
 }
 
-func (l Libro) setPaginas(nPag int){
+func (l *Libro) SetPaginas(nPag int) {
     l.Paginas = nPag
 }
 
@@ -355,7 +355,8 @@ func main() {
     fmt.Println("Autor:", libro.GetAutor())
     fmt.Println("Páginas:", libro.Paginas)
 
-    libro.setPaginas(900)
+    libro.SetPaginas(900)
+
     fmt.Println("Páginas:", libro.Paginas)
 }
 ```
