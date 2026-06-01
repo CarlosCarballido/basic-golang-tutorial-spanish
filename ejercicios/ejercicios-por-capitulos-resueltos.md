@@ -372,8 +372,26 @@ package main
 
 import "fmt"
 
+type Persona struct{
+    Nombre string
+}
+
+
+type Alumno struct{
+    Persona
+    Curso string
+}
+
 func main() {
-    
+    Carlos := Alumno{
+        Persona{
+            Nombre: "Carlos",
+        },
+        Curso: "4 GRIA",
+    }
+
+    fmt.Println("Nombre:", Carlos.Nombre)
+    fmt.Println("Autor:", Carlos.Curso)
 }
 ```
 
@@ -388,11 +406,39 @@ package main
 
 import "fmt"
 
+type Pedido struct {
+	Cliente string
+	Producto string
+	Cantidad int
+	Precio float64
+}
+
+func ResumenPedido(p Pedido) string {
+	total := float64(p.Cantidad) * p.Precio
+
+	return fmt.Sprintf(
+		"Cliente: %s | Producto: %s | Cantidad: %d | Precio unitario: %.2f€ | Total: %.2f€",
+		p.Cliente,
+		p.Producto,
+		p.Cantidad,
+		p.Precio,
+		total,
+	)
+}
+
 func main() {
-    
+	pedido := Pedido{
+		Cliente: "Carlos",
+		Producto: "Monitor",
+		Cantidad: 2,
+		Precio: 199.99,
+	}
+
+	resumen := ResumenPedido(pedido)
+
+	fmt.Println(resumen)
 }
 ```
-
 
 ## Capitulo 6. Punteros
 
