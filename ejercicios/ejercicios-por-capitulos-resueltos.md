@@ -179,6 +179,27 @@ Enunciado: Convierte una variable entera a `float64` y calcula su promedio con o
 Pistas: la conversion debe ser explicita.
 Practica: conversion de tipos.
 
+```go
+package main
+
+import "fmt"
+
+func main() {
+    var edad int = 23
+    var altura float64 = 1.83
+
+    fmt.Println("Edad:", edad)
+    fmt.Println("Altura:", altura)
+
+    edadFloat := float64(edad)
+
+    promedio := (edadFloat + altura) / 2
+
+    fmt.Println("Edad convertida:", edadFloat)
+    fmt.Println("Promedio:", promedio)
+}
+```
+
 ### Ejercicio 9
 Enunciado: Crea un programa que cuente cuantas vocales tiene una palabra.
 Pistas: recorre la cadena y compara cada caracter.
