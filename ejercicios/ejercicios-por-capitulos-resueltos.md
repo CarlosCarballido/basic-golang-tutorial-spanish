@@ -151,6 +151,29 @@ Enunciado: Declara una variable con `var`, otra con `:=` y una constante; imprim
 Pistas: usa tipos distintos, por ejemplo `string`, `int` y `float64`.
 Practica: declaracion de variables y constantes.
 
+```go
+package main
+
+import "fmt"
+
+func main() {
+    var nombre string = "Carlos"
+    const colorOjos string = "verde"
+    nombreNoTipado := "Carlos"
+    var letra rune = 'C'
+    var edad int = 23
+    var altura float64 = 1.83
+
+    fmt.Println("Nombre:", nombre)
+    fmt.Println("Nombre no tipado:", nombreNoTipado)
+    fmt.Println("Letra:", string(letra))
+    fmt.Println("Edad:", edad)
+    fmt.Println("Altura:", altura)
+    fmt.Println("Color de ojos:", colorOjos)
+}
+
+```
+
 ### Ejercicio 8
 Enunciado: Convierte una variable entera a `float64` y calcula su promedio con otro valor decimal.
 Pistas: la conversion debe ser explicita.
