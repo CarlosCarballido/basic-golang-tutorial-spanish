@@ -1048,16 +1048,67 @@ func main() {
 Enunciado: Usa `select` para recibir de dos channels distintos y mostrar el primero que llegue.
 Pistas: no uses `default` al principio.
 Practica: multiplexacion.
+```go
+package main
 
+import (
+    "fmt"
+    "time"
+)
+
+func rapido(ch chan string){
+    time.Sleep(200 * time.Millisecond)
+    ch <- "rapido"
+}
+
+func lento(ch chan string){
+    time.Sleep(500 * time.Millisecond)
+    ch <- "lento"
+}
+
+func main(){
+    rapidoCh := make(chan string)
+    lentoCh := make(chan string)
+
+    go rapido(rapidoCh)
+	go lento(lentoCh)
+
+	select {
+	case v := <-rapidoCh:
+		fmt.Println("Llegó primero:", v)
+
+	case v := <-lentoCh:
+		fmt.Println("Llegó primero:", v)
+	}
+}
+```
 ### Ejercicio 35
 Enunciado: Agrega un timeout con `time.After` a un `select`.
 Pistas: define cuanto tiempo esperas antes de cancelar.
 Practica: timeouts.
 
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+)
+```
+
 ### Ejercicio 36
 Enunciado: Usa `default` en un `select` para evitar bloqueo cuando no hay mensajes.
 Pistas: muestra un mensaje alternativo.
 Practica: comportamiento no bloqueante.
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+)
+```
 
 ## Capitulo 13. Buffered channels
 
