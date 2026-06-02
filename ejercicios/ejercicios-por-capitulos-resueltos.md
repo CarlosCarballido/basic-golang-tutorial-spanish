@@ -989,15 +989,20 @@ package main
 
 import "fmt"
 
-func actualizarContador(ch *chan, contador *int){
-    ch <- contador
+func productor(ch chan int){
+    for i:=1; i<=4; i++{
+        ch <- i
+    }
+    close(ch)
 }
 
 func main(){
-    contador := 0
     ch := make(chan int)
-    for i:=0; i < 4; i++{
-        go actualizarContador(&ch, &contador)
+
+    go productor(ch)
+
+    for valor := range ch{
+        fmt.Println("Recibido:", valor)
     }
 }
 
