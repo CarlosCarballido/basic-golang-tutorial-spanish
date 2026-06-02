@@ -595,17 +595,24 @@ type Cuenta struct {
 	Saldo float64
 }
 
-type getSaldo(*c Cuenta){
-    return fmt.Println("Saldo:", c1.Saldo)
+func (c Cuenta) GetSaldo() float64 {
+	return c.Saldo
 }
 
-type setSaldo(*c Cuenta, *s float64){
-    *c.saldo = *s
+func (c *Cuenta) SetSaldo(saldo float64) {
+	c.Saldo = saldo
 }
 
 func main() {
-    saldo := 10.0
-    c1 := Cuenta{saldo}
+	saldo := 10.0
+
+	c1 := Cuenta{Saldo: saldo}
+
+	fmt.Println("Saldo inicial:", c1.GetSaldo())
+
+	c1.SetSaldo(25.0)
+
+	fmt.Println("Saldo final:", c1.GetSaldo())
 }
 ```
 
