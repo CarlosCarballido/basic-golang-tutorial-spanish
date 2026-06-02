@@ -1199,6 +1199,22 @@ Enunciado: Implementa un worker pool con tres workers y cinco tareas.
 Pistas: separa `jobs` y `results`.
 Practica: worker pool.
 
+El patron worker pool organiza varias goroutines fijas para que procesen un conjunto de tareas compartido. En este ejercicio, `jobs` actua como cola de entrada de las 5 tareas, `worker` representa a cada trabajador y `results` recoge lo que devuelve cada uno.
+
+La idea es que no creas una goroutine nueva por cada tarea, sino que reutilizas 3 workers para consumir trabajo en paralelo. Cuando `jobs` se cierra, los workers terminan su bucle; despues, `results` se cierra para poder recorrer sus valores con `range` sin bloquearse.
+
+```mermaid
+flowchart TD
+        T[Tareas] --> J[jobs]
+        J --> W1[worker 1]
+        J --> W2[worker 2]
+        J --> W3[worker 3]
+        W1 --> R[results]
+        W2 --> R
+        W3 --> R
+        R --> M[main / range]
+```
+
 ```go
 package main
 
