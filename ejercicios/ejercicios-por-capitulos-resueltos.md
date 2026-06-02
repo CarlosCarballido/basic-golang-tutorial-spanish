@@ -1152,15 +1152,45 @@ Enunciado: Crea un channel con capacidad 2 y comprueba que los dos primeros envi
 Pistas: lee despues de enviar.
 Practica: capacidad y bloqueo.
 
-### Ejercicio 38
-Enunciado: Cambia la capacidad del channel anterior y observa cuando aparece el bloqueo.
-Pistas: prueba con 0, 1 y 3.
-Practica: efecto del buffer.
+```go
+package main
 
-### Ejercicio 39
-Enunciado: Escribe un caso en el que un buffered channel sea util y otro en el que no lo sea.
-Pistas: razonalo a nivel de diseno.
-Practica: criterio de uso.
+import "fmt"
+
+func main() {
+	ch := make(chan int, 2)
+
+	fmt.Println("Enviando 1")
+	ch <- 1
+
+	fmt.Println("Enviando 2")
+	ch <- 2
+
+	fmt.Println("Los dos envíos han terminado")
+
+	fmt.Println(<-ch)
+	fmt.Println(<-ch)
+}
+```
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	ch := make(chan int, 2)
+
+	ch <- 1
+	ch <- 2
+
+	fmt.Println("Buffer lleno")
+
+	ch <- 3 // <- aquí se bloquea
+
+	fmt.Println("Nunca llego aquí")
+}
+```
 
 ## Capitulo 14. Patrones de concurrencia
 
