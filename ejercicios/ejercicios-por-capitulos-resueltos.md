@@ -985,6 +985,21 @@ Pistas: el cierre debe hacerlo quien produce.
 Practica: cierre de channels.
 
 ```go
+package main
+
+import "fmt"
+
+func actualizarContador(ch *chan, contador *int){
+    ch <- contador
+}
+
+func main(){
+    contador := 0
+    ch := make(chan int)
+    for i:=0; i < 4; i++{
+        go actualizarContador(&ch, &contador)
+    }
+}
 
 ```
 
