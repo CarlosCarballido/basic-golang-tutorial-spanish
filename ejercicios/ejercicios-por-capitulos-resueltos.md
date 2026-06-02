@@ -738,15 +738,114 @@ Enunciado: Explica por escrito la diferencia entre concurrencia, paralelismo y a
 Pistas: piensa en cocina, transporte o atencion al cliente.
 Practica: razonamiento conceptual.
 
+Diferencia entre concurrencia, paralelismo y asincronía
+
+Imagina una cocina:
+
+Concurrencia
+
+Hay un solo cocinero preparando varios platos.
+
+Preparar ensalada
+↓
+Esperar ingredientes
+↓
+Preparar sopa
+↓
+Remover ensalada
+↓
+Servir sopa
+
+El cocinero alterna tareas. No hace varias cosas al mismo tiempo, pero todas avanzan.
+
+Paralelismo
+
+Hay dos cocineros.
+
+Cocinero 1 -> ensalada
+Cocinero 2 -> sopa
+
+Ambos trabajan exactamente al mismo tiempo.
+
+Asincronía
+
+El cocinero mete una pizza en el horno y sigue trabajando.
+
+Meter pizza al horno
+↓
+La pizza se cocina sola
+↓
+Mientras tanto preparo una ensalada
+↓
+La pizza termina
+
+La tarea continúa sin bloquear al cocinero.
+
+Resumen:
+
+Concurrencia -> varias tareas progresan intercaladas.
+Paralelismo  -> varias tareas ejecutándose simultáneamente.
+Asincronía   -> una tarea espera mientras otra continúa.
+
 ### Ejercicio 26
 Enunciado: Dibuja una linea temporal ASCII con dos tareas intercaladas y otra en paralelo.
 Pistas: usa bloques y flechas.
 Practica: representacion visual de concurrencia.
 
+Línea temporal ASCII
+Concurrencia
+
+Dos tareas avanzan intercaladas:
+
+Tiempo ──────────────────────────>
+
+Tarea A: [Trabaja]-----[Trabaja]-----
+Tarea B: -----[Trabaja]-----[Trabaja]
+Paralelismo
+
+Dos tareas ejecutándose simultáneamente:
+
+Tiempo ──────────────────────────>
+
+Tarea A: [Trabaja][Trabaja][Trabaja]
+Tarea B: [Trabaja][Trabaja][Trabaja]
+Asincronía
+
+Una tarea espera mientras otra continúa:
+
+Tiempo ──────────────────────────>
+
+Tarea A: [Lanza tarea]----[Sigue trabajando]----
+Tarea B: ----[Procesando]----[Termina]----------
+
 ### Ejercicio 27
 Enunciado: Identifica si tres escenarios concretos son concurrentes, paralelos o asincronos.
 Pistas: redacta una frase por escenario.
 Practica: analisis conceptual.
+
+Escenario 1
+
+Un camarero atiende tres mesas distintas alternando entre ellas.
+
+Respuesta: Concurrencia.
+
+Porque una sola persona gestiona varias tareas que avanzan de forma intercalada.
+
+Escenario 2
+
+Dos empleados atienden clientes diferentes al mismo tiempo en dos ventanillas.
+
+Respuesta: Paralelismo.
+
+Porque las tareas se ejecutan simultáneamente.
+
+Escenario 3
+
+Envías un correo electrónico y continúas escribiendo un informe mientras se envía.
+
+Respuesta: Asincronía.
+
+Porque la operación de envío continúa sin bloquear tu trabajo.
 
 ## Capitulo 10. Goroutines
 
