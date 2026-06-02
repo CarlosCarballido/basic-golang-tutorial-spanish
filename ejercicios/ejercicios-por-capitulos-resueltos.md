@@ -1014,6 +1014,25 @@ Pistas: piensa en una tuberia simple.
 Practica: coordinacion basica con channels.
 
 ```go
+package main
+
+import "fmt"
+
+func productor(ch chan int){
+    ch <- 100
+}
+
+func consumidor(ch chan int){
+    valor := <-ch
+    fmt.Println("Consumido:", valor)
+}
+
+func main(){
+    ch := make(chan int)
+
+    go productor(ch)
+    consumidor(ch)
+}
 
 ```
 ## Capitulo 12. Select
