@@ -854,15 +854,102 @@ Enunciado: Lanza una goroutine que imprima un mensaje y espera a que termine.
 Pistas: usa `WaitGroup` o una pequena sincronizacion equivalente.
 Practica: creacion y ciclo de vida de goroutines.
 
+```go
+package main
+
+import (
+    "fmt"
+    "sync"
+    "time"
+)
+
+func mesajeAndSleep(wg *sync.WaitGroup){
+    defer wg.Done()
+
+    fmt.Println("Hola")
+    time.Sleep(100 * time.Millisecond)
+    fmt.Println("Adios")
+}
+
+func main(){
+    var wg sync.WaitGroup
+    for i:=1; i<5; i++ {
+        wg.Add(1)
+        go mesajeAndSleep(&wg)
+    }
+    wg.Wait()
+}
+
+```
+
 ### Ejercicio 29
 Enunciado: Lanza cinco goroutines dentro de un bucle y pasa el indice correctamente a cada una.
 Pistas: evita capturar la variable del bucle sin copiarla.
 Practica: goroutines y closures.
 
+```go
+package main
+
+import (
+    "fmt"
+    "sync"
+)
+
+func Saludo(nombre string, wg *sync.WaitGroup){
+    defer wg.Done()
+
+    fmt.Println("Hola", nombre)
+}
+
+func main(){
+    var wg sync.WaitGroup
+    for i:=0; i <= 5; i++{
+        wg.Add(1)
+        go Saludo("Carlos", &wg)
+    }
+    wg.Wait()
+}
+
+```
+
 ### Ejercicio 30
 Enunciado: Simula cien tareas concurrentes y cuenta cuantas terminan.
 Pistas: coordina el final con `WaitGroup`.
 Practica: escalado de goroutines.
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+func doWork(wg *sync.WaitGroup, contador *int, mu *sync.Mutex) {
+	defer wg.Done()
+
+	mu.Lock()
+	*contador++
+	mu.Unlock()
+}
+
+func main() {
+	var wg sync.WaitGroup
+	var mu sync.Mutex
+
+	contador := 0
+
+	for i := 0; i < 100; i++ {
+		wg.Add(1)
+		go doWork(&wg, &contador, &mu)
+	}
+
+	wg.Wait()
+
+	fmt.Println("Tareas completadas:", contador)
+}
+
+```
 
 ## Capitulo 11. Channels
 
