@@ -526,10 +526,27 @@ Practica: funciones y errores.
 ```go
 package main
 
-import "fmt"
+import (
+    "fmt"
+    )
+
+func dividir(a int, b int) (float64, error) {
+	if b == 0 {
+		return 0, fmt.Errorf("division por cero")
+	}
+
+	return float64(a) / float64(b), nil
+}
 
 func main() {
-    
+	resultado, err := dividir(100, 10)
+
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	fmt.Println(resultado)
 }
 ```
 
@@ -544,8 +561,22 @@ package main
 
 import "fmt"
 
+type Cuenta struct {
+	Saldo float64
+}
+
+func (c *Cuenta) Ingreso(cantidad float64) {
+	c.Saldo += cantidad
+}
+
 func main() {
-    
+	c1 := Cuenta{Saldo: 10.0}
+
+	fmt.Println("Antes:", c1.Saldo)
+
+	c1.Ingreso(20.0)
+
+	fmt.Println("Después:", c1.Saldo)
 }
 ```
 
@@ -560,8 +591,16 @@ package main
 
 import "fmt"
 
+type Cuenta struct {
+	Saldo float64
+}
+
+type getSaldo(*s float64){}
+
+type setSaldo(*s float64){}
+
 func main() {
-    
+    c1 := Cuenta{Saldo: 10.0}
 }
 ```
 
