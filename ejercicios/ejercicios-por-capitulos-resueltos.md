@@ -1199,15 +1199,158 @@ Enunciado: Implementa un worker pool con tres workers y cinco tareas.
 Pistas: separa `jobs` y `results`.
 Practica: worker pool.
 
+```go
+package main
+
+import (
+    "fmt"
+    "sync"
+)
+
+func worker(id int, jobs <-chan int, results chan<- int, wg *sync.WaitGroup) {
+    defer wg.Done()
+    for job := range jobs {
+        results <- job * 2
+    }
+}
+
+func main() {
+    jobs := make(chan int)
+    results := make(chan int)
+    var wg sync.WaitGroup
+
+    for w := 1; w <= 3; w++ {
+        wg.Add(1)
+        go worker(w, jobs, results, &wg)
+    }
+
+    go func() {
+        for j := 1; j <= 5; j++ {
+            jobs <- j
+        }
+        close(jobs)
+    }()
+
+    go func() {
+        wg.Wait()
+        close(results)
+    }()
+
+    for r := range results {
+        fmt.Println(r)
+    }
+}
+```
+
 ### Ejercicio 41
 Enunciado: Implementa fan-in uniendo resultados de dos workers en un canal comun.
 Pistas: crea una funcion `merge`.
 Practica: fan-in.
 
+```go
+package main
+
+import "fmt"
+
+func workerA(ch chan<- string) {
+	ch <- "A1"
+	ch <- "A2"
+	close(ch)
+}
+
+func workerB(ch chan<- string) {
+	ch <- "B1"
+	ch <- "B2"
+	close(ch)
+}
+
+func merge(a, b <-chan string) <-chan string {
+	out := make(chan string)
+
+	go func() {
+		for v := range a {
+			out <- v
+		}
+
+		for v := range b {
+			out <- v
+		}
+
+		close(out)
+	}()
+
+	return out
+}
+
+func main() {
+	a := make(chan string)
+	b := make(chan string)
+
+	go workerA(a)
+	go workerB(b)
+
+	for v := range merge(a, b) {
+		fmt.Println(v)
+	}
+}
+```
+
 ### Ejercicio 42
 Enunciado: Construye un pipeline de dos etapas que transforme texto y lo envie a una salida final.
 Pistas: cada etapa debe hacer una sola cosa.
 Practica: pipeline.
+
+```go
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func mayusculas(in <-chan string) <-chan string {
+	out := make(chan string)
+
+	go func() {
+		for texto := range in {
+			out <- strings.ToUpper(texto)
+		}
+		close(out)
+	}()
+
+	return out
+}
+
+func prefijo(in <-chan string) <-chan string {
+	out := make(chan string)
+
+	go func() {
+		for texto := range in {
+			out <- "Resultado: " + texto
+		}
+		close(out)
+	}()
+
+	return out
+}
+
+func main() {
+	input := make(chan string)
+
+	stage1 := mayusculas(input)
+	stage2 := prefijo(stage1)
+
+	go func() {
+		input <- "hola"
+		input <- "go"
+		close(input)
+	}()
+
+	for resultado := range stage2 {
+		fmt.Println(resultado)
+	}
+}
+```
 
 ## Capitulo 15. Sincronizacion
 
