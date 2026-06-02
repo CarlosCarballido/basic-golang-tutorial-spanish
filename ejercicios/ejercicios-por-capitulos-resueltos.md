@@ -1018,20 +1018,27 @@ package main
 
 import "fmt"
 
-func productor(ch chan int){
-    ch <- 100
+func productor(ch chan int) {
+	for i := 1; i <= 5; i++ {
+		fmt.Println("Produciendo:", i)
+		ch <- i
+	}
+
+	close(ch)
 }
 
-func consumidor(ch chan int){
-    valor := <-ch
-    fmt.Println("Consumido:", valor)
+func consumidor(ch chan int) {
+	for valor := range ch {
+		fmt.Println("Consumido:", valor)
+	}
 }
 
-func main(){
-    ch := make(chan int)
+func main() {
+	ch := make(chan int)
 
-    go productor(ch)
-    consumidor(ch)
+	go productor(ch)
+
+	consumidor(ch)
 }
 
 ```
