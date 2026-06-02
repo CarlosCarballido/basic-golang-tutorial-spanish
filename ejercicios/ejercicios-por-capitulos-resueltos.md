@@ -1422,10 +1422,85 @@ flowchart TD
 
 ## Capitulo 15. Sincronizacion
 
+| Mutex | RWMutex |
+|---------|---------|
+| Un único acceso a la vez | Varias lecturas simultáneas |
+| Lectores y escritores se bloquean entre sí | Los lectores no se bloquean entre sí |
+| Más simple | Más eficiente en cargas con muchas lecturas |
+
+**Regla práctica:** usa `Mutex` por defecto y cambia a `RWMutex` solo si tienes muchas más lecturas que escrituras.
+
+### Mutex
+
+`sync.Mutex` permite que solo una goroutine acceda a un recurso compartido cada vez, ya sea para leer o escribir.
+
+```go
+var mu sync.Mutex
+
+mu.Lock()
+contador++
+mu.Unlock()
+```
+
+### RWMutex
+
+`sync.RWMutex` distingue entre lectura y escritura:
+
+- `RLock()` / `RUnlock()` → múltiples lectores simultáneos.
+- `Lock()` / `Unlock()` → un único escritor exclusivo.
+
+```go
+var rw sync.RWMutex
+
+// Lectura
+rw.RLock()
+fmt.Println(contador)
+rw.RUnlock()
+
+// Escritura
+rw.Lock()
+contador++
+rw.Unlock()
+```
+
 ### Ejercicio 43
 Enunciado: Protege un contador compartido con `Mutex`.
 Pistas: toda escritura debe quedar dentro de la seccion critica.
 Practica: exclusión mutua.
+
+```go
+
+package main
+ 
+import(
+    "fmt"
+    "sync"
+)
+
+func actualizarContador(contador *int, mutex *sync.Mutex, wg *WaitGroup){
+    defer wg.Done()
+
+    mutex.lock()
+
+    *contador++
+
+    mutex.unlock()
+}
+
+func main() {
+	var contador int = 0 
+    var mutex sync.RWMutex
+    var wg sync.WaitGroup
+    for i:=0; i<100; i++{
+        wg.Add(1)
+
+        go actulizarContador(&contador, &mutex, &wg)
+    }
+    wg.Wait()
+
+    fmt.Println(contador)
+}
+```
 
 ### Ejercicio 44
 Enunciado: Crea una cache de lectura frecuente con `RWMutex`.
