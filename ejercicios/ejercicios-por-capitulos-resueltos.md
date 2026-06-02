@@ -931,6 +931,8 @@ func doWork(wg *sync.WaitGroup, contador *int, mu *sync.Mutex) {
 	mu.Lock()
 	*contador++
 	mu.Unlock()
+
+    fmt.Printf("Tarea %d terminada\n", id)
 }
 
 func main() {
