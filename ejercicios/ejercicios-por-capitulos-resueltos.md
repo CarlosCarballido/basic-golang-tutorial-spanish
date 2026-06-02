@@ -1519,6 +1519,33 @@ Enunciado: Cancela una goroutine con `context.WithCancel`.
 Pistas: escucha `ctx.Done()` en el worker.
 Practica: cancelacion cooperativa.
 
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "time"
+)
+
+func trabajo(ctx context.Context, salida chan<- string) {
+    select {
+    case <-time.After(3 * time.Second):
+        salida <- "terminado"
+    case <-ctx.Done():
+        salida <- "cancelado"
+
+func main(){
+    ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+    defer cancel()
+
+    salida := make(chan string)
+    go trabajo(ctx, salida)
+
+    fmt.Println(<-salida)
+}
+```
+
 ### Ejercicio 47
 Enunciado: Aborta una tarea que tarda demasiado usando `context.WithTimeout`.
 Pistas: devuelve un mensaje distinto si vence el tiempo.
