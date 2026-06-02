@@ -1125,6 +1125,26 @@ import (
     "fmt"
     "time"
 )
+
+func main(){
+
+    ch := make(chan string)
+
+    go func(){
+        time.Sleep(50 * time.Second)
+        ch <- "hola"
+    }
+
+    select{
+        case msg := <-ch:
+            fmt.Println("recivido")
+        case <- time.After(1 * time.Second):
+            fmt.Println("timeout")
+        default:
+            fmt,Println("default")
+    }
+
+}
 ```
 
 ## Capitulo 13. Buffered channels
