@@ -960,16 +960,42 @@ Enunciado: Crea un channel sin buffer y haz pasar un valor de una goroutine a ot
 Pistas: separa productor y consumidor.
 Practica: envio y recepcion.
 
+```go
+package main
+
+import "fmt"
+
+func main() {
+
+    ch := make(chan int)
+
+    go func(){
+        ch <- 42
+    }
+
+    valor := <-ch
+
+    fmt.Println("Recibido:", valor)
+}
+```
+
 ### Ejercicio 32
 Enunciado: Construye un canal de resultados, cierralo correctamente y recorre sus valores con `range`.
 Pistas: el cierre debe hacerlo quien produce.
 Practica: cierre de channels.
+
+```go
+
+```
 
 ### Ejercicio 33
 Enunciado: Implementa un ejemplo productor-consumidor con dos goroutines y un channel.
 Pistas: piensa en una tuberia simple.
 Practica: coordinacion basica con channels.
 
+```go
+
+```
 ## Capitulo 12. Select
 
 ### Ejercicio 34
