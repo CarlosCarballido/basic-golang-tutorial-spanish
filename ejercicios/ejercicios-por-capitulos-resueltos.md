@@ -625,12 +625,29 @@ Pistas: usa mayuscula para exportar.
 Practica: organizacion en paquetes.
 
 ```go
-package main
+package utilidades
 
 import "fmt"
 
+// Función exportada (pública)
+func Saludar(nombre string) {
+	fmt.Println(obtenerMensaje(nombre))
+}
+
+// Función privada
+func obtenerMensaje(nombre string) string {
+	return "Hola " + nombre
+}
+```
+
+
+```go
+package main
+
+import "miProyecto/utilidades"
+
 func main() {
-    
+	utilidades.Saludar("Carlos")
 }
 ```
 
@@ -641,12 +658,22 @@ Pistas: ambos tipos deben tener el mismo metodo.
 Practica: interfaces.
 
 ```go
-package main
+package notificaciones
 
 import "fmt"
 
-func main() {
+type Notificador interface() {
     
+}
+```
+
+```go
+package main
+
+import "miProyecto/notifcaciones"
+
+func main() {
+	notificaciones.Notificar("Carlos")
 }
 ```
 
@@ -661,8 +688,45 @@ package main
 
 import "fmt"
 
+// Interfaz
+type Notificador interface {
+	Notificar()
+}
+
+// Tipo 1
+type Email struct {
+	Destinatario string
+}
+
+func (e Email) Notificar() {
+	fmt.Println("Enviando email a:", e.Destinatario)
+}
+
+// Tipo 2
+type SMS struct {
+	Numero string
+}
+
+func (s SMS) Notificar() {
+	fmt.Println("Enviando SMS a:", s.Numero)
+}
+
+// Función que recibe la interfaz
+func Enviar(n Notificador) {
+	n.Notificar()
+}
+
 func main() {
-    
+	email := Email{
+		Destinatario: "carlos@email.com",
+	}
+
+	sms := SMS{
+		Numero: "600123123",
+	}
+
+	Enviar(email)
+	Enviar(sms)
 }
 ```
 
