@@ -452,8 +452,13 @@ package main
 
 import "fmt"
 
+func multi(num *int){
+    *num = *num * 2
+}
+
 func main() {
-    
+    valor := 5
+    multi(&valor)
 }
 ```
 
@@ -468,8 +473,26 @@ package main
 
 import "fmt"
 
+type Persona struct {
+	Nombre string
+	Altura int
+}
+
+func actualizarAltura(p *Persona, nuevaAltura int) {
+	p.Altura = nuevaAltura
+}
+
 func main() {
-    
+	p := Persona{
+		Nombre: "Carlos",
+		Altura: 181,
+	}
+
+	fmt.Println("Antes:", p.Altura)
+
+	actualizarAltura(&p, 185)
+
+	fmt.Println("Después:", p.Altura)
 }
 ```
 
