@@ -1133,15 +1133,13 @@ func main(){
     go func(){
         time.Sleep(50 * time.Second)
         ch <- "hola"
-    }
+    }()
 
     select{
         case msg := <-ch:
-            fmt.Println("recivido")
-        case <- time.After(1 * time.Second):
-            fmt.Println("timeout")
+            fmt.Println("recibido:", msg)
         default:
-            fmt,Println("default")
+            fmt.Println("No hay mensajes")
     }
 
 }
