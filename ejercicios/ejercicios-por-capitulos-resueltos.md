@@ -1104,9 +1104,10 @@ func main(){
     }
 
     select{
-        case ch <- "respuesta":
+        case msg := <-ch:
             fmt.Println("Respuesta")
-        case ch <- time.After(1 * time.Second):
+
+        case <-time.After(1 * time.Second):
             fmt.Println("timeout")
     }
 }
