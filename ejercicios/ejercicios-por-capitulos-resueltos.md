@@ -1263,6 +1263,20 @@ Enunciado: Implementa fan-in uniendo resultados de dos workers en un canal comun
 Pistas: crea una funcion `merge`.
 Practica: fan-in.
 
+El patron fan-in consiste en unir varias fuentes de datos en un unico canal de salida. En este ejercicio, los canales `a` y `b` producen valores por separado y la funcion `merge` los recoge para reenviarlos todos por `out`.
+
+La utilidad de este patron es centralizar la lectura: el codigo principal solo consume un canal, aunque por debajo haya varios workers o varias etapas produciendo resultados al mismo tiempo.
+
+```mermaid
+flowchart TD
+    A[worker A] --> CA[canal a]
+    B[worker B] --> CB[canal b]
+    CA --> M[merge]
+    CB --> M
+    M --> O[out]
+    O --> MAIN[main / range]
+```
+
 ```go
 package main
 
@@ -1368,6 +1382,44 @@ func main() {
 }
 ```
 
+### Ejemplo extra: Pipeline
+Un pipeline divide el trabajo en etapas consecutivas. Cada etapa recibe datos, hace una transformacion simple y pasa el resultado a la siguiente. Es util cuando quieres encadenar procesamiento sin mezclar responsabilidades.
+
+```mermaid
+flowchart LR
+    IN[entrada] --> S1[etapa 1\nmayusculas]
+    S1 --> S2[etapa 2\nprefijo]
+    S2 --> OUT[salida final]
+```
+
+### Ejemplo extra: Producer-Consumer
+Producer-consumer separa quien produce tareas de quien las consume. El productor empuja datos a un canal y el consumidor los procesa a su ritmo. Este patron desacopla ambas partes y evita que tengan que ejecutarse al mismo tiempo.
+
+```mermaid
+flowchart LR
+    P[producer] --> C[(channel)] --> K[consumer]
+```
+
+### Ejemplo extra: Cancellation Pattern
+El patron de cancelacion usa `context` para detener una tarea de forma cooperativa. El worker revisa `ctx.Done()` y sale cuando recibe la senal de cancelacion, en lugar de seguir trabajando inutilmente.
+
+```mermaid
+flowchart TD
+    CTX[context] -->|cancel| DONE[ctx.Done()]
+    DONE --> W[worker]
+    W --> STOP[termina]
+```
+
+### Ejemplo extra: Timeout Pattern
+El timeout pattern limita cuanto tiempo puede esperar una operacion. Si la tarea no termina antes del plazo, el `select` elige la rama de `time.After` y se maneja el vencimiento sin bloquear el programa.
+
+```mermaid
+flowchart TD
+    START[inicio] --> SEL[select]
+    SEL -->|respuesta llega a tiempo| OK[procesar resultado]
+    SEL -->|vence el tiempo| TO[timeout]
+```
+
 ## Capitulo 15. Sincronizacion
 
 ### Ejercicio 43
@@ -1401,37 +1453,3 @@ Practica: timeout.
 Enunciado: Propaga un mismo context por tres funciones encadenadas.
 Pistas: pasa `context.Context` como primer parametro.
 Practica: propagacion de contexto.
-
-## Capitulo 17. Errores comunes
-
-### Ejercicio 49
-Enunciado: Revisa un fragmento con una posible race condition y explica por que es inseguro.
-Pistas: busca variables compartidas sin proteccion.
-Practica: deteccion de carreras.
-
-### Ejercicio 50
-Enunciado: Localiza un deadlock en un ejemplo de channels y describe como evitarlo.
-Pistas: analiza quien envia y quien recibe.
-Practica: diagnostico de bloqueos.
-
-### Ejercicio 51
-Enunciado: Corrige una goroutine leak provocada por un canal que nunca se cierra.
-Pistas: decide quien produce y quien cierra.
-Practica: cierre correcto y limpieza.
-
-## Capitulo 18. Proyecto practico
-
-### Ejercicio 52
-Enunciado: Diseña el esquema de modulos para un procesador concurrente de tareas.
-Pistas: separa productor, workers, agregador y estadisticas.
-Practica: arquitectura del proyecto.
-
-### Ejercicio 53
-Enunciado: Añade cancelacion por timeout global al procesador de tareas.
-Pistas: combina `context` y `select`.
-Practica: control temporal del sistema.
-
-### Ejercicio 54
-Enunciado: Extiende el proyecto para contar tareas completadas, fallidas y canceladas.
-Pistas: protege las estadisticas con `Mutex`.
-Practica: integracion de sincronizacion y observabilidad.
