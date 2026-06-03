@@ -92,8 +92,20 @@ import(
     "fmt"
 )
 
-func main{
+type Perro struct {
+    patas int
+}
 
+func (p *Perro) modificarPatas(valor int){
+    p.patas = valor
+}
+
+func main(){
+    toby := Perro{4}
+
+    fmt.Println("Antes:", toby.patas)
+    toby.modificarPatas(3)
+    fmt.Println("Después:", toby.patas)
 }
 ```
 
@@ -109,8 +121,20 @@ import(
     "fmt"
 )
 
-func main{
+func divisionSegura(a float64, b float64) (float64, error){
+    if *b != 0{
+        return *a / *b, nil
+    } else {
+        fmt.Println("No se puede dividir por 0")
+        return 0, false
+    }
+}
 
+func main(){
+    a := 10.0
+    b := 0.0
+
+    divisionSegura(&a, &b)
 }
 ```
 
@@ -126,7 +150,7 @@ import(
     "fmt"
 )
 
-func main{
+func main(){
 
 }
 ```
@@ -143,7 +167,7 @@ import(
     "fmt"
 )
 
-func main{
+func main(){
 
 }
 ```
@@ -160,7 +184,7 @@ import(
     "fmt"
 )
 
-func main{
+func main(){
 
 }
 ```
@@ -177,7 +201,7 @@ import(
     "fmt"
 )
 
-func main{
+func main(){
 
 }
 ```
@@ -194,7 +218,7 @@ import(
     "fmt"
 )
 
-func main{
+func main(){
 
 }
 ```
@@ -211,7 +235,7 @@ import(
     "fmt"
 )
 
-func main{
+func main(){
 
 }
 ```
@@ -228,7 +252,7 @@ import(
     "fmt"
 )
 
-func main{
+func main(){
 
 }
 ```
@@ -245,7 +269,7 @@ import(
     "fmt"
 )
 
-func main{
+func main(){
 
 }
 ```
@@ -262,7 +286,7 @@ import(
     "fmt"
 )
 
-func main{
+func main(){
 
 }
 ```
@@ -279,7 +303,7 @@ import(
     "fmt"
 )
 
-func main{
+func main(){
 
 }
 ```
