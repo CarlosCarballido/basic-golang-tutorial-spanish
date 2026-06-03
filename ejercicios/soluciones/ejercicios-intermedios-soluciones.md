@@ -246,8 +246,24 @@ import(
     "fmt"
 )
 
-func main(){
+type Rectangulo struct{
+    ladoA float64
+    ladoB float64
+}
 
+func (r Rectangulo) Area() float64{
+    return r.ladoA * r.ladoB
+}
+
+func (r Rectangulo) Perimetro() float64{
+    return r.ladoA*2 + r.ladoB*2
+}
+
+func main(){
+    r := Rectangulo{2.0, 3.0}
+
+    fmt.Println(r.Area())
+    fmt.Println(r.Perimetro())
 }
 ```
 
