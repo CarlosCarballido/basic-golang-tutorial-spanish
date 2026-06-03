@@ -209,9 +209,12 @@ import(
 )
 
 func main(){
-    var personas map (string,(int)) = {
-        "Carlos" : 22
-    } 
+    personas := map[string]int{
+        "Carlos" : 22,
+        "Milagros" : 24,
+        "Erik" : 21
+    }
+    fmt.Println(personas)
 }
 
 ```
