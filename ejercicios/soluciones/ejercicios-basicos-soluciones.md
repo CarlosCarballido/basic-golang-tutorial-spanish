@@ -211,7 +211,7 @@ import(
 func main(){
     personas := map[string]int{
         "Carlos" : 22,
-        "Milagros" : 24,
+        "Milagros" : 29,
         "Erik" : 21
     }
     fmt.Println(personas)
@@ -234,7 +234,22 @@ import(
 )
 
 func main(){
+    personas := map[string]int {
+        "Carlos" : 22,
+        "Milagros" : 29,
+        "Erik" : 21
+    }
 
+    edad, ok := personas["Carlos"]
+    if ok {
+        fmt.Println(edad)
+    }
+    edad2, ok2 := personas["Jose"]
+    if ok2 {
+        fmt.Println(edad2)
+    } else {
+        fmt.Println("No existe en el map")
+    }
 }
 
 ```
