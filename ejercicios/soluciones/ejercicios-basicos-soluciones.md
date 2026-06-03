@@ -359,8 +359,26 @@ import(
     "fmt"
 )
 
-func main(){
+type tienda struct{
+    precioManzana float64
+    precioPera float64
+    precioColaCao float64
+}
 
+func aplicarDescuento(precio float64, descuento float64) float64 {
+    return (precio - (precio * descuento))
+}
+
+func main(){
+    const descuento float64 = 0.33
+
+    carrefive := tienda{1.99, 2.49, 4.59}
+
+    fmt.Println("Precios con descuento:",
+     "Manzana", aplicarDescuento(carrefive.precioManzana, descuento),
+     "Pera", aplicarDescuento(carrefive.precioPera, descuento),
+     "ColaCao", aplicarDescuento(carrefive.precioColaCao, descuento)
+    )
 }
 
 ```
