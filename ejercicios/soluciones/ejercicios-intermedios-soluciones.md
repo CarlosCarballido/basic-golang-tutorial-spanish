@@ -146,12 +146,31 @@ Practica: structs, metodos.
 ```go
 package main
 
-import(
-    "fmt"
+import (
+	"fmt"
 )
 
-func main(){
+type CuentaBancaria struct {
+	dinero float64
+}
 
+func (c *CuentaBancaria) Deposito(cantidad float64) {
+	c.dinero += cantidad
+}
+
+func (c *CuentaBancaria) Retiro(cantidad float64) {
+	c.dinero -= cantidad
+}
+
+func main() {
+	cuenta := CuentaBancaria{dinero: 100.0}
+
+	fmt.Println("Saldo inicial:", cuenta.dinero)
+
+	cuenta.Deposito(33.0)
+	cuenta.Retiro(3.0)
+
+	fmt.Println("Saldo final:", cuenta.dinero)
 }
 ```
 
