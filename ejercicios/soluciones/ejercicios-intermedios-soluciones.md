@@ -279,8 +279,18 @@ import(
     "fmt"
 )
 
-func main(){
+type Logger interface {
+    Log(mensaje string)
+}
 
+type ConsoleLogger struct{}
+
+func (c ConsoleLogger) Log(mensaje string) {
+	fmt.Println(mensaje)
+}
+
+func main(){
+    Log("Log de prueba")
 }
 ```
 
