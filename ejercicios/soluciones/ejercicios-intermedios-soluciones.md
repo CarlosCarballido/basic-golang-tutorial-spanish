@@ -300,14 +300,26 @@ Pistas: prueba a importarlo desde main.
 Practica: paquetes.
 
 ```go
+package mathx
+
+func Max(a int, b int) int{
+    if a > b{
+        return a
+    }
+    return b
+}
+```
+
+```go
 package main
 
 import(
     "fmt"
+    "mathx"
 )
 
 func main(){
-
+    fmt.Println(mathx.Max(4, 3))
 }
 ```
 
