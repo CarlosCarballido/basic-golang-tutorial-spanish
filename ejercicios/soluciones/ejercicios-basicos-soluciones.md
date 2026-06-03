@@ -88,8 +88,29 @@ import(
     "fmt"
 )
 
-func main(){
+func esPar(a *int) boolean{
+    if a % 2 == 0{
+        return true
+    } else {
+        return false
+    }
+}
 
+func main(){
+    num1 := 1
+    num2 := 2
+
+    if esPar(&num1){
+        fmt.Println("Par")
+    } else{
+        fmt.Println("Impar")
+    }
+
+    if esPar(&num2){
+        fmt.Println("Par")
+    } else{
+        fmt.Println("Impar")
+    }
 }
 
 ```
