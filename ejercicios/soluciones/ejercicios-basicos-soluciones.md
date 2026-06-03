@@ -421,14 +421,20 @@ Practica: switch.
 
 package main
 
-import(
-    "fmt"
-)
+import "fmt"
 
-func main(){
-
+func main() {
+    for i := 0; i < 3; i++ {
+        switch i {
+        case 0:
+            fmt.Println("Primer mensaje")
+        case 1:
+            fmt.Println("Segundo mensaje")
+        case 2:
+            fmt.Println("Tercer mensaje")
+        }
+    }
 }
-
 ```
 
 ## Ejercicio 16
