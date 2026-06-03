@@ -268,8 +268,18 @@ import(
     "fmt"
 )
 
-func main(){
+type Curso struct{
+    nombreCurso string
+    profesorCurso string
+    creditosCurso int
+}
 
+func main(){
+    sire := Curso{"Sistemas Reactivos", "Milagros", 6}
+
+    fmt.Println(sire.nombreCurso)
+    fmt.Println(sire.profesorCurso)
+    fmt.Println(sire.creditosCurso)
 }
 
 ```
