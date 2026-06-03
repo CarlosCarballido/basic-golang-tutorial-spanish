@@ -35,10 +35,19 @@ Practica: variables, operaciones, funciones.
 
 package main
 
-import
+import "fmt"
+
+func calcularArea(x *float64, y *float64) float64{
+    return *x * *y
+}
 
 func main(){
+    x := 2.0
+    y := 3.0
 
+    area := calcularArea(&x, &y)
+
+    fmt.Println(area)
 }
 
 ```
