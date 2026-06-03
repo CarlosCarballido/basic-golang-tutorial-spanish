@@ -331,8 +331,16 @@ import(
     "fmt"
 )
 
-func main(){
+func multiply(num *int){
+    *num = *num * 2
+}
 
+func main(){
+    num := 33
+
+    multiply(&num)
+
+    fmt.Println(num)
 }
 
 ```
