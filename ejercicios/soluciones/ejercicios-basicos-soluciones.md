@@ -451,8 +451,22 @@ import(
     "fmt"
 )
 
-func main(){
+type Libro struct {
+    autor string
+    titulo string
+    paginas int
+    resumen string
+}
 
+func (l Libro) getResumen() string{
+    return l.resumen
+}
+
+func main(){
+    // alternativa: libro1 := Libro{...}
+    var libro1 Libro = Libro{"Rubén Doblas", "El libro troll", 192, "libro interactivo y cuaderno de actividades creado por el youtuber español Rubius, diseñado para que los lectores participen en una experiencia divertida y personalizada"}
+
+    fmt.Println("Resumen:", libro1.getResumen())
 }
 
 ```
