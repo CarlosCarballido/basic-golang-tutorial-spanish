@@ -335,8 +335,14 @@ import(
     "fmt"
 )
 
-func main(){
+func llevarACero(num *int){
+    *num = 0
+}
 
+func main(){
+    a := 33
+    llevarACero(&a)
+    fmt.Println(a)
 }
 ```
 
