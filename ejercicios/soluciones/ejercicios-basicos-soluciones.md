@@ -486,7 +486,12 @@ import(
 )
 
 func main(){
+    // alternativa arrayInts := [3]int{3, 33, 333}
+    var arrayInts [3]int = [3]int{3, 33, 333}
 
+    for i:=0; len(arrayInts); i++{
+        fmt.Println(arrayyInts[i])
+    }
 }
 
 ```
