@@ -12,8 +12,37 @@ import(
     "fmt"
 )
 
-func main{
-    
+type Figure interface{
+    Area() float64
+}
+
+type Rectangulo struct{
+    x float64
+    y float64
+}
+
+func (r Rectangulo) Area() float64 {
+    return r.x * r.y
+}
+
+type Circulo struct {
+	radio float64
+}
+
+func (c Circulo) Area() float64 {
+	return math.Pi * c.radio * c.radio
+}
+
+func mostrarArea(f Figure) {
+	fmt.Println("Área:", f.Area())
+}
+
+func main() {
+    r := Rectangulo{3, 5}
+	c := Circulo{2}
+
+	mostrarArea(r)
+	mostrarArea(c)
 }
 ```
 
@@ -30,7 +59,7 @@ import(
 )
 
 func main{
-    
+
 }
 ```
 
@@ -47,7 +76,7 @@ import(
 )
 
 func main{
-    
+
 }
 ```
 
@@ -64,7 +93,7 @@ import(
 )
 
 func main{
-    
+
 }
 ```
 
@@ -81,7 +110,7 @@ import(
 )
 
 func main{
-    
+
 }
 ```
 
@@ -98,7 +127,7 @@ import(
 )
 
 func main{
-    
+
 }
 ```
 
@@ -115,7 +144,7 @@ import(
 )
 
 func main{
-    
+
 }
 ```
 
@@ -132,7 +161,7 @@ import(
 )
 
 func main{
-    
+
 }
 ```
 
@@ -149,7 +178,7 @@ import(
 )
 
 func main{
-    
+
 }
 ```
 
@@ -166,7 +195,7 @@ import(
 )
 
 func main{
-    
+
 }
 ```
 
@@ -183,7 +212,7 @@ import(
 )
 
 func main{
-    
+
 }
 ```
 
@@ -200,7 +229,7 @@ import(
 )
 
 func main{
-    
+
 }
 ```
 
@@ -217,7 +246,7 @@ import(
 )
 
 func main{
-    
+
 }
 ```
 
@@ -234,6 +263,6 @@ import(
 )
 
 func main{
-    
+
 }
 ```
