@@ -215,8 +215,22 @@ import(
     "fmt"
 )
 
-func main(){
+func media(notas map[string]float64)float64{
+    sumaTotal := 0.0
+    for _, nota := range notas{
+        sumaTotal += nota
+    }
+    return sumaTotal/float64(len(notas))
+}
 
+func main(){
+    notas := map[string]float64{
+        "Carlos" : 7.75,
+        "Milagros" : 10.0,
+        "Erik" : 5.0,
+    }
+
+    fmt.Println(media(notas))
 }
 ```
 
