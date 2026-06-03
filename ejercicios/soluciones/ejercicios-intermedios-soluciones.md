@@ -358,8 +358,23 @@ import(
     "fmt"
 )
 
-func main(){
+type Persona struct{
+    nombre string
+}
 
+type Alumno struct{
+    Persona
+    curso string
+}
+
+func main(){
+    ap := Alumno{
+        Persona{
+            "Carlos",
+        },
+        "GRIA",
+    }
+    fmt.Println(ap.nombre, "estudia", ap.curso)
 }
 ```
 
@@ -375,8 +390,23 @@ import(
     "fmt"
 )
 
-func main(){
+func strip(slice []string) []string{
+    
+    sliceSinVacios := []string{}
+    for _, cadena := range slice{
+        if cadena != ""{
+            sliceSinVacios = append(sliceSinVacios, cadena)
+        }
+    }
+    return sliceSinVacios
+}
 
+func main(){
+    var slice []string = []string{"hola", "", "mundo", "", "!"} 
+
+    sliceLimpia := strip(slice)
+
+    fmt.Println(sliceLimpia)
 }
 ```
 
@@ -388,11 +418,24 @@ Practica: maps, robustez.
 ```go
 package main
 
-import(
-    "fmt"
+import (
+	"fmt"
 )
 
-func main(){
+func leerConfig(mapa map[string]string) {
+	if valor, ok := mapa["host"]; ok {
+		fmt.Println("Host:", valor)
+	} else {
+		fmt.Println("La clave 'host' no existe")
+	}
+}
 
+func main() {
+	config := map[string]string{
+		"host": "localhost",
+		"port": "8080",
+	}
+
+	leerConfig(config)
 }
 ```
