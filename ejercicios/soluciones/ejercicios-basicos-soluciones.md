@@ -130,7 +130,10 @@ import(
 )
 
 func main(){
-
+    var materias []string = {"SIRE", "APAUII", "APAUBIO", "PIC", "EJIA"}
+    for _, materia := range materias{
+        fmt.Println(materia)
+    }
 }
 
 ```
