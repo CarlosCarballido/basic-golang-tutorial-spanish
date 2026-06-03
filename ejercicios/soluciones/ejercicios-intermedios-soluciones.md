@@ -52,14 +52,31 @@ Pistas: controla mayusculas y minusculas.
 Practica: paquetes, exportacion.
 
 ```go
-package main
+package utilidades
 
 import(
     "fmt"
 )
 
-func main{
+func hola() {
+    fmt.Println("Hola")
+}
 
+func Hola(){
+    hola()
+}
+```
+
+```go
+package main
+
+import(
+    "fmt"
+    "utilidades"
+)
+
+func main(){
+    utilidades.Hola()
 }
 ```
 
