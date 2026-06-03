@@ -512,11 +512,11 @@ import(
 
 func main(){
     var slice1 []int = []int{1, 2, 3}
-    slcie2 = make([]int, len(slice1))
+    slice2 := make([]int, len(slice1))
 
-    copy(slice2, slice1)
+	copy(slice2, slice1)
 
-    slice2[0] = 33
+	slice2[0] = 33
 
     fmt.Println("Original:", slice1)
     fmt.Println("Copia:", slice2)
