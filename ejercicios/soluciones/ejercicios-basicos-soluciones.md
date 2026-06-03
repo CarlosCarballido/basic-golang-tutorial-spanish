@@ -183,9 +183,9 @@ import(
 
 func main(){
     contador := 0
-    palabra := hola
+    palabra := "hola"
 
-    for _, letra in range palabra{
+    for range palabra{
         contador++;
     }
 
