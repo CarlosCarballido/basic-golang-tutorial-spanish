@@ -10,10 +10,17 @@ Practica: variables, tipos basicos, salida por consola.
 
 package main
 
-import
+import(
+    "fmt"
+)
 
 func main(){
+    var nombre string = "Carlos"
+    var edad  int = 22
+    var ciudad string  = "Teo"
 
+    fmt.Printf("%s, %d, %s", nombre, edad, ciudad )
+    fmt.Println(nombre, edad, ciudad)
 }
 
 ```
