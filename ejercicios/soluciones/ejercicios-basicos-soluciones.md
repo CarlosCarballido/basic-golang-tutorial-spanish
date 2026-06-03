@@ -130,7 +130,9 @@ import(
 )
 
 func main(){
-    var materias []string = {"SIRE", "APAUII", "APAUBIO", "PIC", "EJIA"}
+    // alternativa: materias := []string{"SIRE", "APAUII", "APAUBIO", "PIC", "EJIA"}
+    var materias []string = []string{"SIRE", "APAUII", "APAUBIO", "PIC", "EJIA"}
+
     for _, materia := range materias{
         fmt.Println(materia)
     }
@@ -153,7 +155,14 @@ import(
 )
 
 func main(){
+    // alternativa: materias := []string{"SIRE", "APAUII", "APAUBIO", "PIC", "EJIA"}
+    var materias []string = []string{"SIRE", "APAUII", "APAUBIO", "PIC", "EJIA"}
 
+    materias = append(materias, "CCPD")
+
+    for _, materia := range materias {
+        fmt.Println(materia)
+    }
 }
 
 ```
