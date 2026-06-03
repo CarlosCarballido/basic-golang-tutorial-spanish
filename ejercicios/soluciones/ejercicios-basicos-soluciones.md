@@ -17,7 +17,7 @@ import(
 func main(){
     var nombre string = "Carlos"
     var edad  int = 22
-    var ciudad string  = "Teo"
+    var ciudad string  = "Ourense"
 
     fmt.Printf("%s, %d, %s", nombre, edad, ciudad )
     fmt.Println(nombre, edad, ciudad)
@@ -209,7 +209,9 @@ import(
 )
 
 func main(){
-
+    var personas map (string,(int)) = {
+        "Carlos" : 22
+    } 
 }
 
 ```
