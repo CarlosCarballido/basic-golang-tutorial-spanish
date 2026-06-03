@@ -186,8 +186,20 @@ import(
     "fmt"
 )
 
-func main(){
+func sumReduce(slice []float64) float64{
+    sumaTotal := 0.0
+    for i:=0; i < len(slice) ; i++{
+        sumaTotal += (slice)[i]
+    }
+    return sumaTotal
+}
 
+func main(){
+    a := []float64{3.00, 3.33, 33.1}
+
+    suma := sumReduce(a)
+
+    fmt.Println(suma)
 }
 ```
 
