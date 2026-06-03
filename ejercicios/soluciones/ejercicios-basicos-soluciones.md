@@ -182,7 +182,14 @@ import(
 )
 
 func main(){
+    contador := 0
+    palabra := hola
 
+    for _, letra in range palabra{
+        contador++;
+    }
+
+    fmt.Println(contador)
 }
 
 ```
