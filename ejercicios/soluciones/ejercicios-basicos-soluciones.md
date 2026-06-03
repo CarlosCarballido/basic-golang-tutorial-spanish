@@ -397,8 +397,16 @@ import(
     "fmt"
 )
 
-func main(){
+func celsiusToFah(grados *float64){
+    *grados = (*grados * 9 / 5) + 32
+}
 
+func main(){
+    temp := 33.0
+
+    celsiusToFah(&temp)
+
+    fmt.Println("Temperatura:", temp)
 }
 
 ```
