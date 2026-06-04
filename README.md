@@ -26,6 +26,8 @@ Lee los capitulos en orden. Los capitulos 1 a 8 cubren la base del lenguaje. Los
 - [16-context.md](16-context.md)
 - [17-errores-comunes.md](17-errores-comunes.md)
 - [18-proyecto-practico.md](18-proyecto-practico.md)
+- [19-ticker.md](19-ticker.md)
+- [20-panic-y-recover.md](20-panic-y-recover.md)
 
 ## Carpetas de codigo
 
@@ -51,4 +53,4 @@ Cada capitulo combina teoria, analogias, diagramas ASCII, ejemplos completos, ex
 
 ## Proyecto final
 
-El capitulo final desarrolla un procesador concurrente de tareas con `goroutines`, `channels`, `select`, `WaitGroup`, `Mutex` y `context`.
+El capitulo final desarrolla un procesador concurrente de tareas con `goroutines`, `channels`, `select`, `WaitGroup`, `Mutex` y `context`. Los capitulos extra introducen `ticker` para ejecutar acciones periodicas y `panic/recover` para manejar fallos inesperados.
