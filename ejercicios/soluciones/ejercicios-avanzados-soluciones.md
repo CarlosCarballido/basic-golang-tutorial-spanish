@@ -8,14 +8,23 @@ Practica: goroutines, sincronizacion.
 ```go
 package main
 
-import(
+import (
     "fmt"
+    "sync"
 )
 
-func main(){
-    
+func imprimirMensaje(wg *sync.WaitGroup){
+    defer wg.Done()
+    fmt.Println("Mensaje")
 }
 
+func main(){
+    // alternativa: var wg sync.waitGroup
+    wg := sync.WaitGroup{}
+    wg.Add(1)
+    go imprimirMensaje(&wg)
+    wg.Wait()
+}
 ```
 
 ## Ejercicio 34
@@ -26,14 +35,38 @@ Practica: channels, concurrencia.
 ```go
 package main
 
-import(
+import (
     "fmt"
+    "sync"
 )
 
-func main(){
-    
+// escritura
+func producir(ch chan<- int, wg *sync.WaitGroup){
+    defer wg.Done()
+    ch <- 1
 }
 
+// lectura
+func consumir(ch <-chan int, wg *sync.WaitGroup){
+    defer wg.Done()
+    fmt.Println(<-ch)
+}
+
+func main(){
+    wg := sync.WaitGroup{}
+    ch := make(chan int)
+    
+    wg.Add(4)
+    go producir(ch, &wg)
+    go producir(ch, &wg)
+
+    // wg.Wait() hace deadlock los productores se quedan bloqueados intentando enviar: ch <- 1 y nunca ejecutan wg.Done()
+
+    go consumir(ch, &wg)
+    go consumir(ch, &wg)
+    
+    wg.Wait()
+}
 ```
 
 ## Ejercicio 35
@@ -44,14 +77,14 @@ Practica: select, timeout.
 ```go
 package main
 
-import(
+import (
     "fmt"
+    "time"
 )
 
 func main(){
-    
-}
 
+}
 ```
 
 ## Ejercicio 36
@@ -62,14 +95,13 @@ Practica: buffered channels.
 ```go
 package main
 
-import(
+import (
     "fmt"
 )
 
 func main(){
-    
-}
 
+}
 ```
 
 ## Ejercicio 37
@@ -80,14 +112,13 @@ Practica: patron worker pool.
 ```go
 package main
 
-import(
+import (
     "fmt"
 )
 
 func main(){
-    
-}
 
+}
 ```
 
 ## Ejercicio 38
@@ -98,14 +129,13 @@ Practica: mutex, race conditions.
 ```go
 package main
 
-import(
+import (
     "fmt"
 )
 
 func main(){
-    
-}
 
+}
 ```
 
 ## Ejercicio 39
@@ -116,14 +146,13 @@ Practica: RWMutex.
 ```go
 package main
 
-import(
+import (
     "fmt"
 )
 
 func main(){
-    
-}
 
+}
 ```
 
 ## Ejercicio 40
@@ -134,14 +163,13 @@ Practica: context, cancelacion.
 ```go
 package main
 
-import(
+import (
     "fmt"
 )
 
 func main(){
-    
-}
 
+}
 ```
 
 ## Ejercicio 41
@@ -152,14 +180,13 @@ Practica: context, timeout.
 ```go
 package main
 
-import(
+import (
     "fmt"
 )
 
 func main(){
-    
-}
 
+}
 ```
 
 ## Ejercicio 42
@@ -170,14 +197,13 @@ Practica: pipeline.
 ```go
 package main
 
-import(
+import (
     "fmt"
 )
 
 func main(){
-    
-}
 
+}
 ```
 
 ## Ejercicio 43
@@ -188,14 +214,13 @@ Practica: fan-out.
 ```go
 package main
 
-import(
+import (
     "fmt"
 )
 
 func main(){
-    
-}
 
+}
 ```
 
 ## Ejercicio 44
@@ -206,14 +231,13 @@ Practica: fan-in.
 ```go
 package main
 
-import(
+import (
     "fmt"
 )
 
 func main(){
-    
-}
 
+}
 ```
 
 ## Ejercicio 45
@@ -224,14 +248,13 @@ Practica: diagnostico de concurrencia.
 ```go
 package main
 
-import(
+import (
     "fmt"
 )
 
 func main(){
-    
-}
 
+}
 ```
 
 ## Ejercicio 46
@@ -242,14 +265,13 @@ Practica: leaks, cierre correcto.
 ```go
 package main
 
-import(
+import (
     "fmt"
 )
 
 func main(){
-    
-}
 
+}
 ```
 
 ## Ejercicio 47
@@ -260,14 +282,13 @@ Practica: diseno concurrente.
 ```go
 package main
 
-import(
+import (
     "fmt"
 )
 
 func main(){
-    
-}
 
+}
 ```
 
 ## Ejercicio 48
@@ -278,14 +299,13 @@ Practica: cancelacion cooperativa.
 ```go
 package main
 
-import(
+import (
     "fmt"
 )
 
 func main(){
-    
-}
 
+}
 ```
 
 ## Ejercicio 49
@@ -296,14 +316,13 @@ Practica: context, select, errores.
 ```go
 package main
 
-import(
+import (
     "fmt"
 )
 
 func main(){
-    
-}
 
+}
 ```
 
 ## Ejercicio 50
@@ -314,14 +333,13 @@ Practica: mutex, patrones.
 ```go
 package main
 
-import(
+import (
     "fmt"
 )
 
 func main(){
-    
-}
 
+}
 ```
 
 ## Ejercicio 51
@@ -332,14 +350,13 @@ Practica: select, shutdown limpio.
 ```go
 package main
 
-import(
+import (
     "fmt"
 )
 
 func main(){
-    
-}
 
+}
 ```
 
 ## Ejercicio 52
@@ -350,12 +367,11 @@ Practica: escalado, limitacion.
 ```go
 package main
 
-import(
+import (
     "fmt"
 )
 
 func main(){
-    
-}
 
+}
 ```
