@@ -10,10 +10,20 @@ package main
 
 import (
     "fmt"
+    "sync"
 )
 
+func imprimirMensaje(wg *sync.WaitGroup){
+    defer wg.Done()
+    fmt.Println("Mensaje")
+}
+
 func main(){
-    
+    // alternativa: var wg sync.waitGroup
+    wg := sync.WaitGroup{}
+    wg.Add(1)
+    go imprimirMensaje(&wg)
+    wg.Wait()
 }
 ```
 
@@ -30,7 +40,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -47,7 +57,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -64,7 +74,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -81,7 +91,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -98,7 +108,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -115,7 +125,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -132,7 +142,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -149,7 +159,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -166,7 +176,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -183,7 +193,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -200,7 +210,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -217,7 +227,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -234,7 +244,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -251,7 +261,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -268,7 +278,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -285,7 +295,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -302,7 +312,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -319,7 +329,7 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
 
@@ -336,6 +346,6 @@ import (
 )
 
 func main(){
-    
+
 }
 ```
