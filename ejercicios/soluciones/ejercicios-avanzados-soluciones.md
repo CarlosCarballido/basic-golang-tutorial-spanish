@@ -80,9 +80,30 @@ package main
 import (
     "fmt"
     "time"
+    "sync"
 )
 
+func doWork(ch chan<- int, wg *sync.WaitGroup){
+    defer wg.Done()
+    time.Sleep(2 * time.Second)
+    ch <- 1
+}
+
 func main(){
+    ch := make(chan int)
+    var wg sync.WaitGroup
+    wg.Add(1)
+
+    go doWork(ch, &wg)
+
+    select{
+        case entero := <-ch:
+            fmt.Println(entero)
+        case <-time.After(1 * time.Second):
+            fmt.Println("timeout")
+    }
+
+    wg.Wait()
 
 }
 ```
